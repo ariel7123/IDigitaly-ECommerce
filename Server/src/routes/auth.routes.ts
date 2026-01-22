@@ -1,0 +1,16 @@
+// server/src/routes/auth.routes.ts - Authentication routes
+import { Router } from 'express';
+import { register, login, logout, getMe } from '../controllers';
+import { protect } from '../middleware';
+
+const router = Router();
+
+// Public routes
+router.post('/register', register);
+router.post('/login', login);
+
+// Protected routes
+router.post('/logout', protect, logout);
+router.get('/me', protect, getMe);
+
+export default router;

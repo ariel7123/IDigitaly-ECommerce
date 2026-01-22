@@ -1,0 +1,100 @@
+// client/src/pages/Auth.scss
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.auth-page {
+  min-height: calc(100vh - 80px);
+  @include flex-center;
+  padding: $spacing-lg;
+}
+
+.auth-container {
+  background: $white;
+  border-radius: $border-radius-xl;
+  padding: $spacing-2xl $spacing-3xl;
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid $gray-100;
+  box-shadow: $shadow-sm;
+  @include fade-in;
+
+  @include mobile {
+    padding: $spacing-xl $spacing-lg;
+    border-radius: $border-radius-lg;
+  }
+}
+
+.logo {
+  text-align: center;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  color: $primary-color;
+  letter-spacing: -0.02em;
+}
+
+#logo {
+  margin-bottom: $spacing-3xl;
+}
+
+.form {
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    color: $primary-color;
+    margin-bottom: $spacing-2xl;
+    letter-spacing: -0.02em;
+  }
+}
+
+.form-group {
+  margin-bottom: $spacing-lg;
+
+  &__label {
+    display: block;
+    font-weight: $font-weight-medium;
+    color: $gray-700;
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__input {
+    @include form-input;
+  }
+}
+
+.message {
+  padding: $spacing-md;
+  border-radius: $border-radius-md;
+  margin-bottom: $spacing-lg;
+  font-size: $font-size-sm;
+
+  &--error {
+    background: rgba($error-color, 0.1);
+    color: $error-color;
+    border: 1px solid rgba($error-color, 0.2);
+  }
+
+  &--success {
+    background: rgba($success-color, 0.1);
+    color: $success-color;
+    border: 1px solid rgba($success-color, 0.2);
+  }
+}
+
+.switch-form {
+  text-align: center;
+  margin-top: $spacing-xl;
+  color: $gray-600;
+  font-size: $font-size-sm;
+
+  a {
+    color: $primary-color;
+    font-weight: $font-weight-medium;
+    margin-left: $spacing-xs;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

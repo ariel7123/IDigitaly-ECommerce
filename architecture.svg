@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0066CC"/>
+      <stop offset="100%" style="stop-color:#0052A3"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="3" stdDeviation="4" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="900" fill="#fafafa"/>
+  
+  <!-- Title -->
+  <text x="600" y="45" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="32" font-weight="700" fill="#1a1a1a" text-anchor="middle">IDigitaly - Project Architecture</text>
+  <text x="600" y="75" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" fill="#737373" text-anchor="middle">MERN Stack + TypeScript</text>
+
+  <!-- ============ CLIENT SECTION ============ -->
+  <rect x="40" y="100" width="540" height="520" rx="16" fill="#ffffff" stroke="#0066CC" stroke-width="2" filter="url(#shadow)"/>
+  
+  <!-- Client Header -->
+  <rect x="40" y="100" width="540" height="50" rx="16" fill="url(#blueGrad)"/>
+  <rect x="40" y="134" width="540" height="16" fill="url(#blueGrad)"/>
+  <text x="70" y="133" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="600" fill="#ffffff">📁 client/ - Frontend (React + Vite + TypeScript)</text>
+
+  <!-- Client Structure -->
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif" fill="#404040">
+    <text x="60" y="185" font-size="14" fill="#0066CC" font-weight="600">📁 src/</text>
+    
+    <!-- Components -->
+    <rect x="80" y="200" width="480" height="65" rx="8" fill="#f0f7ff" stroke="#0066CC" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="95" y="220" font-size="13" font-weight="500">📁 components/</text>
+    <text x="110" y="240" font-size="11" fill="#525252">├── common/     → Button, Input, Modal, Toast</text>
+    <text x="110" y="256" font-size="11" fill="#525252">├── layout/      → Header, Footer</text>
+    <text x="280" y="256" font-size="11" fill="#525252">├── features/   → CartSidebar, ProductCard</text>
+
+    <!-- Pages -->
+    <rect x="80" y="275" width="480" height="45" rx="8" fill="#f0f7ff" stroke="#0066CC" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="95" y="295" font-size="13" font-weight="500">📁 pages/</text>
+    <text x="110" y="312" font-size="11" fill="#525252">Home.tsx, Login.tsx, Register.tsx, Cart.tsx</text>
+
+    <!-- Services -->
+    <rect x="80" y="330" width="480" height="45" rx="8" fill="#f0f7ff" stroke="#0066CC" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="95" y="350" font-size="13" font-weight="500">📁 services/</text>
+    <text x="110" y="367" font-size="11" fill="#525252">api.ts (Axios), auth.service.ts, cart.service.ts, products.service.ts</text>
+
+    <!-- Store -->
+    <rect x="80" y="385" width="230" height="45" rx="8" fill="#f0f7ff" stroke="#0066CC" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="95" y="405" font-size="13" font-weight="500">📁 store/</text>
+    <text x="110" y="422" font-size="11" fill="#525252">AuthContext, CartContext</text>
+
+    <!-- Styles -->
+    <rect x="330" y="385" width="230" height="45" rx="8" fill="#f0f7ff" stroke="#0066CC" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="345" y="405" font-size="13" font-weight="500">📁 styles/</text>
+    <text x="360" y="422" font-size="11" fill="#525252">_variables, _mixins, main</text>
+
+    <!-- Types & Utils -->
+    <rect x="80" y="440" width="230" height="35" rx="8" fill="#f5f5f5"/>
+    <text x="95" y="463" font-size="12" fill="#525252">📁 types/      → TypeScript interfaces</text>
+    
+    <rect x="330" y="440" width="230" height="35" rx="8" fill="#f5f5f5"/>
+    <text x="345" y="463" font-size="12" fill="#525252">📁 hooks/      → useAuth, useCart</text>
+
+    <!-- Files -->
+    <text x="60" y="510" font-size="12" fill="#737373" font-style="italic">📄 App.tsx, main.tsx, vite.config.ts, package.json, tsconfig.json</text>
+  </g>
+
+  <!-- Client Tech Badges -->
+  <g transform="translate(60, 540)">
+    <rect width="55" height="24" rx="12" fill="#61dafb"/>
+    <text x="27" y="16" font-family="-apple-system" font-size="11" fill="#1a1a1a" text-anchor="middle" font-weight="500">React</text>
+    
+    <rect x="65" width="40" height="24" rx="12" fill="#646cff"/>
+    <text x="85" y="16" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="500">Vite</text>
+    
+    <rect x="115" width="75" height="24" rx="12" fill="#3178c6"/>
+    <text x="152" y="16" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="500">TypeScript</text>
+    
+    <rect x="200" width="50" height="24" rx="12" fill="#cc6699"/>
+    <text x="225" y="16" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="500">SCSS</text>
+    
+    <rect x="260" width="50" height="24" rx="12" fill="#ca4245"/>
+    <text x="285" y="16" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="500">Router</text>
+    
+    <rect x="320" width="50" height="24" rx="12" fill="#5a29e4"/>
+    <text x="345" y="16" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="500">Axios</text>
+  </g>
+
+  <!-- ============ SERVER SECTION ============ -->
+  <rect x="620" y="100" width="540" height="520" rx="16" fill="#ffffff" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
+  
+  <!-- Server Header -->
+  <rect x="620" y="100" width="540" height="50" rx="16" fill="url(#greenGrad)"/>
+  <rect x="620" y="134" width="540" height="16" fill="url(#greenGrad)"/>
+  <text x="650" y="133" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="600" fill="#ffffff">📁 server/ - Backend (Express + TypeScript)</text>
+
+  <!-- Server Structure -->
+  <g font-family="-apple-system, BlinkMacSystemFont, sans-serif" fill="#404040">
+    <text x="640" y="185" font-size="14" fill="#10b981" font-weight="600">📁 src/</text>
+    
+    <!-- Controllers -->
+    <rect x="660" y="200" width="480" height="45" rx="8" fill="#f0fdf4" stroke="#10b981" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="675" y="220" font-size="13" font-weight="500">📁 controllers/</text>
+    <text x="690" y="237" font-size="11" fill="#525252">auth.controller.ts, cart.controller.ts, products.controller.ts</text>
+
+    <!-- Models -->
+    <rect x="660" y="255" width="480" height="45" rx="8" fill="#f0fdf4" stroke="#10b981" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="675" y="275" font-size="13" font-weight="500">📁 models/</text>
+    <text x="690" y="292" font-size="11" fill="#525252">user.model.ts (with cart), product.model.ts - Mongoose Schemas</text>
+
+    <!-- Routes -->
+    <rect x="660" y="310" width="480" height="45" rx="8" fill="#f0fdf4" stroke="#10b981" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="675" y="330" font-size="13" font-weight="500">📁 routes/</text>
+    <text x="690" y="347" font-size="11" fill="#525252">auth.routes.ts, cart.routes.ts, products.routes.ts, index.ts</text>
+
+    <!-- Middleware -->
+    <rect x="660" y="365" width="235" height="45" rx="8" fill="#f0fdf4" stroke="#10b981" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="675" y="385" font-size="13" font-weight="500">📁 middleware/</text>
+    <text x="690" y="402" font-size="11" fill="#525252">auth, error handling</text>
+
+    <!-- Config -->
+    <rect x="905" y="365" width="235" height="45" rx="8" fill="#f0fdf4" stroke="#10b981" stroke-width="1" stroke-opacity="0.3"/>
+    <text x="920" y="385" font-size="13" font-weight="500">📁 config/</text>
+    <text x="935" y="402" font-size="11" fill="#525252">db.ts, env.ts</text>
+
+    <!-- Types & Utils -->
+    <rect x="660" y="420" width="235" height="35" rx="8" fill="#f5f5f5"/>
+    <text x="675" y="443" font-size="12" fill="#525252">📁 types/      → Interfaces</text>
+    
+    <rect x="905" y="420" width="235" height="35" rx="8" fill="#f5f5f5"/>
+    <text x="920" y="443" font-size="12" fill="#525252">📁 utils/       → Helpers</text>
+
+    <!-- Entry Point -->
+    <text x="640" y="490" font-size="12" fill="#737373" font-style="italic">📄 index.ts (Entry Point)</text>
+    <text x="640" y="510" font-size="12" fill="#737373" font-style="italic">📄 package.json, tsconfig.json, nodemon.json, .env</text>
+  </g>
+
+  <!-- Server Tech Badges -->
+  <g transform="translate(640, 540)">
+    <rect width="60" height="24" rx="12" fill="#000000"/>
+    <text x="30" y="16" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="500">Express</text>
+    
+    <rect x="70" width="75" height="24" rx="12" fill="#3178c6"/>
+    <text x="107" y="16" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="500">TypeScript</text>
+    
+    <rect x="155" width="70" height="24" rx="12" fill="#47a248"/>
+    <text x="190" y="16" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="500">MongoDB</text>
+    
+    <rect x="235" width="70" height="24" rx="12" fill="#880085"/>
+    <text x="270" y="16" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="500">Mongoose</text>
+    
+    <rect x="315" width="40" height="24" rx="12" fill="#d63aff"/>
+    <text x="335" y="16" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="500">JWT</text>
+    
+    <rect x="365" width="55" height="24" rx="12" fill="#ff6b6b"/>
+    <text x="392" y="16" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="500">bcrypt</text>
+  </g>
+
+  <!-- ============ SHARED SECTION ============ -->
+  <rect x="40" y="640" width="350" height="100" rx="16" fill="#ffffff" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="40" y="640" width="350" height="40" rx="16" fill="url(#orangeGrad)"/>
+  <rect x="40" y="668" width="350" height="12" fill="url(#orangeGrad)"/>
+  <text x="70" y="667" font-family="-apple-system" font-size="16" font-weight="600" fill="#ffffff">📁 shared/ - Shared Types</text>
+  <text x="60" y="710" font-family="-apple-system" font-size="12" fill="#525252">📁 types/ → IUser, IProduct, ICartItem, IApiResponse</text>
+  <text x="60" y="728" font-family="-apple-system" font-size="11" fill="#737373">Used by both client and server for type safety</text>
+
+  <!-- ============ ROOT FILES ============ -->
+  <rect x="410" y="640" width="350" height="100" rx="16" fill="#ffffff" stroke="#737373" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="410" y="640" width="350" height="40" rx="16" fill="#737373"/>
+  <rect x="410" y="668" width="350" height="12" fill="#737373"/>
+  <text x="440" y="667" font-family="-apple-system" font-size="16" font-weight="600" fill="#ffffff">📄 Root Files</text>
+  <text x="430" y="705" font-family="-apple-system" font-size="12" fill="#525252">.gitignore, README.md</text>
+  <text x="430" y="728" font-family="-apple-system" font-size="11" fill="#737373">docker-compose.yml (optional for later)</text>
+
+  <!-- ============ DATA FLOW ============ -->
+  <rect x="780" y="640" width="380" height="100" rx="16" fill="#1a1a1a" filter="url(#shadow)"/>
+  <text x="810" y="670" font-family="-apple-system" font-size="16" font-weight="600" fill="#ffffff">🔄 Data Flow</text>
+  
+  <!-- Flow Boxes -->
+  <rect x="800" y="690" width="70" height="35" rx="6" fill="#e5e5e5"/>
+  <text x="835" y="712" font-family="-apple-system" font-size="11" fill="#1a1a1a" text-anchor="middle">Browser</text>
+  
+  <rect x="890" y="690" width="60" height="35" rx="6" fill="#0066CC"/>
+  <text x="920" y="712" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle">React</text>
+  
+  <rect x="970" y="690" width="70" height="35" rx="6" fill="#10b981"/>
+  <text x="1005" y="712" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle">Express</text>
+  
+  <rect x="1060" y="690" width="80" height="35" rx="6" fill="#47a248"/>
+  <text x="1100" y="712" font-family="-apple-system" font-size="11" fill="#ffffff" text-anchor="middle">MongoDB</text>
+
+  <!-- Arrows -->
+  <path d="M 872 707 L 888 707" stroke="#ffffff" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 952 707 L 968 707" stroke="#ffffff" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 1042 707 L 1058 707" stroke="#ffffff" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+  
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ffffff"/>
+    </marker>
+  </defs>
+
+  <!-- ============ SECURITY BOX ============ -->
+  <rect x="40" y="760" width="1120" height="50" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="1"/>
+  <text x="70" y="790" font-family="-apple-system" font-size="14" fill="#92400e">🔐 Security: JWT tokens stored in httpOnly cookies (XSS protection) + SameSite (CSRF protection) + bcrypt password hashing</text>
+
+  <!-- ============ COMMANDS ============ -->
+  <rect x="40" y="820" width="560" height="70" rx="12" fill="#1a1a1a"/>
+  <text x="60" y="845" font-family="-apple-system" font-size="14" font-weight="600" fill="#ffffff">⚡ Quick Start Commands</text>
+  <text x="60" y="865" font-family="Monaco, Consolas, monospace" font-size="11" fill="#10b981">cd server && npm install && npm run dev</text>
+  <text x="60" y="880" font-family="Monaco, Consolas, monospace" font-size="11" fill="#0066CC">cd client && npm install && npm run dev</text>
+
+  <!-- Ports -->
+  <rect x="620" y="820" width="540" height="70" rx="12" fill="#f5f5f5" stroke="#e5e5e5"/>
+  <text x="640" y="845" font-family="-apple-system" font-size="14" font-weight="600" fill="#1a1a1a">🌐 Development URLs</text>
+  <text x="640" y="865" font-family="-apple-system" font-size="12" fill="#0066CC">Frontend: http://localhost:5173</text>
+  <text x="640" y="882" font-family="-apple-system" font-size="12" fill="#10b981">Backend API: http://localhost:5000/api</text>
+  <text x="900" y="865" font-family="-apple-system" font-size="12" fill="#47a248">MongoDB: Atlas Cloud</text>
+
+</svg>
