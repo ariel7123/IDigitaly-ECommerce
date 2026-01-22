@@ -1,0 +1,95 @@
+// client/src/components/layout/Header.scss
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  background-color: $white;
+  box-shadow: $shadow-sm;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &__content {
+    @include flex-between;
+    padding: $spacing-md 0;
+  }
+
+  &__actions {
+    @include flex-center;
+    gap: $spacing-md;
+  }
+}
+
+.logo {
+  h1 {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $primary-color;
+    
+    @include mobile {
+      font-size: $font-size-xl;
+    }
+  }
+}
+
+.nav {
+  @include mobile {
+    display: none;
+  }
+
+  &__list {
+    @include flex-center;
+    gap: $spacing-xl;
+    list-style: none;
+  }
+
+  &__link {
+    color: $gray-600;
+    font-weight: $font-weight-medium;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.btn-cart {
+  @include button-base;
+  background: transparent;
+  color: $gray-600;
+  position: relative;
+  padding: $spacing-sm;
+
+  &:hover {
+    background-color: $gray-100;
+  }
+}
+
+.cart-icon {
+  font-size: $font-size-xl;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: $error-color;
+  color: $white;
+  border-radius: $border-radius-full;
+  width: 20px;
+  height: 20px;
+  @include flex-center;
+  font-size: 12px;
+  font-weight: $font-weight-bold;
+}
+
+.user-menu {
+  @include flex-center;
+  gap: $spacing-md;
+}
+
+.user-name {
+  color: $gray-700;
+  font-weight: $font-weight-medium;
+}
