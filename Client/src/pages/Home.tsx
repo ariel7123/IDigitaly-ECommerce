@@ -330,10 +330,6 @@ const Home: React.FC = () => {
                 onClick={() => setActiveCategory(category.id)}
                 style={{ background: category.gradient }}
               >
-                <div className="category-card__content">
-                  <h3 className="category-card__name">{category.name}</h3>
-                  <p className="category-card__description">{category.description}</p>
-                </div>
                 <div className="category-card__icon">
                   {category.id === 'iphone' && (
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 1h-8C6.12 1 5 2.12 5 3.5v17C5 21.88 6.12 23 7.5 23h8c1.38 0 2.5-1.12 2.5-2.5v-17C18 2.12 16.88 1 15.5 1zm-4 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5-4H7V4h9v14z"/></svg>
@@ -354,6 +350,7 @@ const Home: React.FC = () => {
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15 7.5V2H9v5.5l3 3 3-3zM7.5 9H2v6h5.5l3-3-3-3zM9 16.5V22h6v-5.5l-3-3-3 3zM16.5 9l-3 3 3 3H22V9h-5.5z"/></svg>
                   )}
                 </div>
+                <h3 className="category-card__name">{category.name}</h3>
               </a>
             ))}
           </div>
