@@ -18,13 +18,14 @@ const Header: React.FC = () => {
     <header className="header">
       <div className="container">
         <div className="header__content">
-          <Link to="/" className="logo">
+          <a href="#" className="logo" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+            <img src="/images/Apple_logo_black.svg" alt="Apple" className="logo__apple" />
             <h1>IDigitaly</h1>
-          </Link>
+          </a>
 
           <nav className="nav">
             <ul className="nav__list">
-              <li><Link to="/" className="nav__link">Home</Link></li>
+              <li><a href="#" className="nav__link" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Home</a></li>
               <li><a href="#products" className="nav__link">Products</a></li>
               <li><a href="#about" className="nav__link">About</a></li>
             </ul>
@@ -47,7 +48,7 @@ const Header: React.FC = () => {
               </div>
             ) : (
               <Link to="/login" className="btn btn--primary">
-                Login
+                התחבר / הירשם
               </Link>
             )}
           </div>

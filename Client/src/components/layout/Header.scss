@@ -12,7 +12,7 @@
 
   &__content {
     @include flex-between;
-    padding: $spacing-md 0;
+    padding: $spacing-xs 0;
   }
 
   &__actions {
@@ -33,11 +33,29 @@
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  transition: transform $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &__apple {
+    height: 28px;
+    width: auto;
+
+    @include mobile {
+      height: 22px;
+    }
+  }
+
   h1 {
     font-size: $font-size-2xl;
     font-weight: $font-weight-bold;
     color: $primary-color;
-    
+
     @include mobile {
       font-size: $font-size-xl;
     }
