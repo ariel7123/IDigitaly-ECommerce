@@ -675,11 +675,17 @@
     @include flex-center;
     margin-bottom: $spacing-lg;
     overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform $transition-normal;
+    }
   }
 
-  &__image-placeholder {
-    font-size: 4rem;
-    opacity: 0.8;
+  &:hover &__image img {
+    transform: scale(1.05);
   }
 
   &__info {
@@ -909,17 +915,43 @@
     }
   }
 
-  &__image {
+  &__image-link {
     flex: 1;
-    @include flex-center;
+    display: block;
+    cursor: pointer;
   }
 
-  &__image-placeholder {
-    font-size: 10rem;
-    opacity: 0.8;
+  &__image {
+    @include flex-center;
+    position: relative;
+    min-height: 400px;
 
     @include mobile {
-      font-size: 6rem;
+      min-height: 250px;
+    }
+  }
+
+  &__carousel-img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    transform: scale(0.95);
+
+    &.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    @include mobile {
+      max-height: 250px;
     }
   }
 }

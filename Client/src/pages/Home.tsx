@@ -1,119 +1,129 @@
 // client/src/pages/Home.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Home.scss';
 
-// Apple Products Data
+// iPhone 17 Pro Max carousel images - add your images here
+const proMaxImages = [
+  '/images/iphone-17-pro-max.png',
+  '/images/iphone-17-pro-max-2.png',
+  '/images/iphone-17-pro-max-3.png',
+  '/images/iphone-17-pro-max-4.png',
+];
+
+// Apple Products Data - Latest 2025 Models
+// Replace placeholder images with actual product images in /public/images/products/
 const featuredProducts = [
   {
     id: '1',
-    name: 'iPhone 15 Pro Max',
-    description: 'טיטניום. A17 Pro. כפתור פעולה. הכי פרו שאי פעם היה.',
-    price: 5499,
-    originalPrice: 5899,
+    name: 'iPhone 17 Pro Max',
+    description: 'A19 Pro. קירור Vapor Chamber. מצלמת טלפוטו 4x/8x. הסוללה הגדולה ביותר.',
+    price: 6499,
+    originalPrice: 6799,
     category: 'iphone',
-    image: '/images/products/iphone-15-pro-max.png',
+    image: '/images/iphone-17-pro-max.png',
     badge: 'חדש',
-    colors: ['#1f1f1f', '#f5f5f0', '#4a4a4f', '#534d41'],
+    colors: ['#c5b8a5', '#1f1f1f', '#f5f5f0', '#757779'],
   },
   {
     id: '2',
-    name: 'iPhone 15 Pro',
-    description: 'טיטניום. עיצוב קל במיוחד. A17 Pro עם GPU בעל 6 ליבות.',
-    price: 4799,
+    name: 'iPhone 17 Pro',
+    description: 'A19 Pro chip. קירור Vapor Chamber. 256GB בסיס. מצלמת טלפוטו משודרגת.',
+    price: 5799,
     category: 'iphone',
-    image: '/images/products/iphone-15-pro.png',
-    colors: ['#1f1f1f', '#f5f5f0', '#4a4a4f', '#534d41'],
+    image: '/images/iphone-17-pro.png',
+    colors: ['#c5b8a5', '#1f1f1f', '#f5f5f0', '#757779'],
   },
   {
     id: '3',
-    name: 'iPhone 15',
-    description: 'Dynamic Island. מצלמת 48MP. USB-C. עוד סיבות לאהוב.',
-    price: 3699,
+    name: 'iPhone 17 Air',
+    description: 'A19 Pro. הדק ביותר - 5.6 מ״מ. מסגרת טיטניום. 6.5 אינץ\'.',
+    price: 4799,
     category: 'iphone',
-    image: '/images/products/iphone-15.png',
-    colors: ['#f9e5c9', '#f5c7d7', '#d4e4bc', '#bde4f4', '#1f1f1f'],
+    image: '/images/iphone-17-air.png',
+    badge: 'חדש',
+    colors: ['#f5f5f0', '#1f1f1f', '#c5b8a5'],
   },
   {
     id: '4',
-    name: 'MacBook Pro 14"',
-    description: 'M3 Pro או M3 Max. ביצועים פרו שעולים על הכל.',
-    price: 9499,
-    category: 'mac',
-    image: '/images/products/macbook-pro-14.png',
-    badge: 'הכי נמכר',
-    colors: ['#1f1f1f', '#86868b'],
+    name: 'iPhone 17',
+    description: 'A19 chip. ProMotion 120Hz. Always-On. Wi-Fi 7. Ceramic Shield 2.',
+    price: 3999,
+    category: 'iphone',
+    image: '/images/iphone-17.png',
+    colors: ['#3c3c9c', '#e8d4c4', '#cee4dc', '#fadadd', '#1f1f1f'],
   },
   {
     id: '5',
-    name: 'MacBook Air 15"',
-    description: 'M3. מסך גדול. דק להפליא. 18 שעות סוללה.',
-    price: 6499,
+    name: 'MacBook Pro 14" M5',
+    description: 'M5 chip. גרפיקה מהירה פי 1.6. SSD מהיר פי 2. עד 24 שעות סוללה.',
+    price: 7999,
     category: 'mac',
-    image: '/images/products/macbook-air-15.png',
-    colors: ['#1f1f1f', '#86868b', '#f5f5f0', '#e3d7c5'],
+    image: '/images/macbook-pro-m5-14.png',
+    badge: 'M5 חדש',
+    colors: ['#1f1f1f', '#86868b'],
   },
   {
     id: '6',
-    name: 'iPad Pro 12.9"',
-    description: 'M2 chip. מסך Liquid Retina XDR. מהיר יותר מאי פעם.',
+    name: 'MacBook Air 15" M4',
+    description: 'M4 chip. 16GB זיכרון. תמיכה ב-2 מסכים. 18 שעות סוללה. צבע Sky Blue חדש.',
     price: 5999,
-    category: 'ipad',
-    image: '/images/products/ipad-pro.png',
-    badge: 'Pro',
-    colors: ['#86868b', '#1f1f1f'],
+    category: 'mac',
+    image: '/images/macbook-pro-m4-15.png',
+    colors: ['#87CEEB', '#2e3642', '#86868b', '#f5f5f0', '#e3d7c5'],
   },
   {
     id: '7',
-    name: 'iPad Air',
-    description: 'M1 chip. מסך 10.9 אינץ\'. Touch ID. Wi-Fi 6.',
-    price: 2999,
+    name: 'iPad Pro 13" M5',
+    description: 'M5 chip. ביצועי AI מהירים פי 3.5. Wi-Fi 7. מודם C1X.',
+    price: 6999,
     category: 'ipad',
-    image: '/images/products/ipad-air.png',
-    colors: ['#86868b', '#e3d7c5', '#c9c9ca', '#b8dce0', '#d5c4e5'],
+    image: '/images/ipad-air-m5-13.png',
+    badge: 'M5 חדש',
+    colors: ['#86868b', '#1f1f1f'],
   },
   {
     id: '8',
-    name: 'Apple Watch Ultra 2',
-    description: 'הכי קשוח. הכי יכול. שעון ספורט אולטימטיבי.',
-    price: 3999,
-    category: 'watch',
-    image: '/images/products/watch-ultra-2.png',
-    badge: 'Ultra',
+    name: 'iPad Air 13" M3',
+    description: 'M3 chip. Ray Tracing. Magic Keyboard חדש. מסך Liquid Retina.',
+    price: 4499,
+    category: 'ipad',
+    image: '/images/ipad-air-m3-13.png',
+    colors: ['#86868b', '#e3d7c5', '#c9c9ca', '#b8dce0', '#d5c4e5'],
   },
   {
     id: '9',
-    name: 'Apple Watch Series 9',
-    description: 'S9 SiP. תצוגה בהירה יותר. Double Tap חדש.',
-    price: 1999,
+    name: 'Apple Watch Ultra 2',
+    description: 'S9 SiP. 3000 nits. GPS מדויק. 72 שעות סוללה.',
+    price: 3999,
     category: 'watch',
-    image: '/images/products/watch-series-9.png',
-    colors: ['#f5e6cf', '#e3d9cf', '#5a5b60', '#b0c7d5', '#c73a3a'],
+    image: '/images/watch-ultra-2.png',
+    badge: 'Ultra',
   },
   {
     id: '10',
-    name: 'AirPods Pro 2',
-    description: 'עם USB-C. ביטול רעשים אקטיבי. שמע מרחבי.',
-    price: 999,
-    category: 'airpods',
-    image: '/images/products/airpods-pro-2.png',
-    badge: 'הכי נמכר',
+    name: 'Apple Watch Series 10',
+    description: 'מסך הכי גדול. הכי דק אי פעם. S10 SiP.',
+    price: 2099,
+    category: 'watch',
+    image: '/images/watch-series-10.png',
+    colors: ['#f5e6cf', '#3b3b3b', '#d4a489'],
   },
   {
     id: '11',
-    name: 'AirPods Max',
-    description: 'אודיו חישובי. ביטול רעשים מדהים. עיצוב פרימיום.',
-    price: 2199,
+    name: 'AirPods Pro 2',
+    description: 'USB-C. ביטול רעשים אקטיבי 2x. שמע מרחבי מותאם.',
+    price: 1049,
     category: 'airpods',
-    image: '/images/products/airpods-max.png',
-    colors: ['#86868b', '#b8dce0', '#bfdabd', '#fcd5d5', '#b4c8dc'],
+    image: '/images/airpods-pro-2.png',
+    badge: 'הכי נמכר',
   },
   {
     id: '12',
-    name: 'AirPods 3',
-    description: 'שמע מרחבי. עמידות במים ובזיעה. MagSafe.',
-    price: 749,
+    name: 'AirPods 4',
+    description: 'עיצוב חדש. H2 chip. שמע מרחבי מותאם אישית.',
+    price: 799,
     category: 'airpods',
-    image: '/images/products/airpods-3.png',
+    image: '/images/airpods-4.png',
   },
 ];
 
@@ -219,6 +229,18 @@ const promos = [
 const Home: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [email, setEmail] = useState('');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Auto-rotate carousel images every 2.5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) =>
+        (prevIndex + 1) % proMaxImages.length
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const filteredProducts = activeCategory === 'all'
     ? featuredProducts
@@ -415,13 +437,11 @@ const Home: React.FC = () => {
                   <span className="product-card__badge">{product.badge}</span>
                 )}
                 <div className="product-card__image">
-                  <div className="product-card__image-placeholder">
-                    {product.category === 'iphone' && '📱'}
-                    {product.category === 'mac' && '💻'}
-                    {product.category === 'ipad' && '📲'}
-                    {product.category === 'watch' && '⌚'}
-                    {product.category === 'airpods' && '🎧'}
-                  </div>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    loading="lazy"
+                  />
                 </div>
                 <div className="product-card__info">
                   <h3 className="product-card__title">{product.name}</h3>
@@ -484,20 +504,29 @@ const Home: React.FC = () => {
           <div className="featured-banner__content">
             <div className="featured-banner__text">
               <span className="featured-banner__label">מבצע מיוחד</span>
-              <h2 className="featured-banner__title">iPhone 15 Pro Max</h2>
+              <h2 className="featured-banner__title">iPhone 17 Pro Max</h2>
               <p className="featured-banner__description">
-                הטלפון החזק ביותר שיצרנו אי פעם. שבב A17 Pro, מצלמה 48MP,
-                ועיצוב טיטניום ייחודי. זמין עכשיו במחיר מיוחד.
+                הטלפון החזק ביותר שיצרנו אי פעם. שבב A19 Pro עם קירור Vapor Chamber,
+                מצלמת טלפוטו 4x/8x והסוללה הגדולה ביותר באייפון. זמין עכשיו במחיר מיוחד.
               </p>
               <div className="featured-banner__price">
-                <span className="featured-banner__current-price">₪5,499</span>
-                <span className="featured-banner__original-price">₪5,899</span>
+                <span className="featured-banner__current-price">₪6,499</span>
+                <span className="featured-banner__original-price">₪6,799</span>
               </div>
               <button className="featured-banner__cta">קנה עכשיו</button>
             </div>
-            <div className="featured-banner__image">
-              <div className="featured-banner__image-placeholder">📱</div>
-            </div>
+            <a href="#" className="featured-banner__image-link">
+              <div className="featured-banner__image">
+                {proMaxImages.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`iPhone 17 Pro Max ${index + 1}`}
+                    className={`featured-banner__carousel-img ${index === currentImageIndex ? 'active' : ''}`}
+                  />
+                ))}
+              </div>
+            </a>
           </div>
         </div>
       </section>
