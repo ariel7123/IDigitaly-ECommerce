@@ -208,8 +208,8 @@ const benefits = [
 const promos = [
   {
     id: 1,
-    title: 'iPhone 17',
-    subtitle: 'A19 Pro. העתיד כבר כאן.',
+    title: 'iPhone 17 Pro',
+    subtitle: 'הדור הבא של החדשנות. עיצוב מרהיב, ביצועים ללא תחרות.',
     cta: 'קנה עכשיו',
     backgroundImages: [
       '/images/promos/iphone-promo-bg-1.jpg',
@@ -230,7 +230,7 @@ const promos = [
   {
     id: 2,
     title: 'Mac',
-    subtitle: 'עוצמה. ביצועים. יצירתיות.',
+    subtitle: 'כוח-על שפותח את הדלת ליצירתיות בלתי מוגבלת.',
     cta: 'גלה עוד',
     backgroundImages: [
       '/images/promos/macbooks%20for%20banner/macbook-promo-bg-1.jpg',

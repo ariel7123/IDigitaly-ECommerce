@@ -564,8 +564,8 @@
 
   &__dots {
     position: absolute;
-    bottom: $spacing-sm;
-    left: $spacing-md;
+    bottom: $spacing-md;
+    left: $spacing-xl;
     display: flex;
     gap: $spacing-xs;
     z-index: 3;
