@@ -25,9 +25,9 @@ const Header: React.FC = () => {
 
           <nav className="nav">
             <ul className="nav__list">
-              <li><a href="#" className="nav__link" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Home</a></li>
-              <li><a href="#products" className="nav__link">Products</a></li>
-              <li><a href="#about" className="nav__link">About</a></li>
+              <li><a href="#" className="nav__link" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>בית</a></li>
+              <li><a href="#products" className="nav__link">מוצרים</a></li>
+              <li><a href="#about" className="nav__link">אודות</a></li>
             </ul>
           </nav>
 
@@ -43,7 +43,7 @@ const Header: React.FC = () => {
               <div className="user-menu">
                 <span className="user-name">{user?.name}</span>
                 <button className="btn btn--secondary" onClick={handleLogout}>
-                  Logout
+                  התנתק
                 </button>
               </div>
             ) : (
