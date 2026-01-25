@@ -256,6 +256,8 @@ const Home: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [promoImageIndex, setPromoImageIndex] = useState(0);
   const [macPromoImageIndex, setMacPromoImageIndex] = useState(0);
+  const [isIphonePromoHovered, setIsIphonePromoHovered] = useState(false);
+  const [isMacPromoHovered, setIsMacPromoHovered] = useState(false);
 
   // Auto-rotate carousel images every 2.5 seconds
   useEffect(() => {
@@ -274,13 +276,15 @@ const Home: React.FC = () => {
     if (!iphonePromo || iphonePromo.backgroundImages.length <= 1) return;
 
     const interval = setInterval(() => {
-      setPromoImageIndex((prevIndex) =>
-        (prevIndex + 1) % iphonePromo.backgroundImages.length
-      );
+      if (!isIphonePromoHovered) {
+        setPromoImageIndex((prevIndex) =>
+          (prevIndex + 1) % iphonePromo.backgroundImages.length
+        );
+      }
     }, 2300);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isIphonePromoHovered]);
 
   // Auto-rotate Mac promo banner images
   useEffect(() => {
@@ -288,13 +292,15 @@ const Home: React.FC = () => {
     if (!macPromo || macPromo.backgroundImages.length <= 1) return;
 
     const interval = setInterval(() => {
-      setMacPromoImageIndex((prevIndex) =>
-        (prevIndex + 1) % macPromo.backgroundImages.length
-      );
+      if (!isMacPromoHovered) {
+        setMacPromoImageIndex((prevIndex) =>
+          (prevIndex + 1) % macPromo.backgroundImages.length
+        );
+      }
     }, 2300);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isMacPromoHovered]);
 
   const filteredProducts = activeCategory === 'all'
     ? featuredProducts
@@ -417,10 +423,14 @@ const Home: React.FC = () => {
           <div className="promo-banners__grid">
             {promos.map((promo) => {
               const currentBgIndex = promo.id === 1 ? promoImageIndex : promo.id === 2 ? macPromoImageIndex : 0;
+              const setHovered = promo.id === 1 ? setIsIphonePromoHovered : setIsMacPromoHovered;
+              const setIndex = promo.id === 1 ? setPromoImageIndex : setMacPromoImageIndex;
               return (
                 <div
                   key={promo.id}
                   className={`promo-banner promo-banner--${promo.textColor}`}
+                  onMouseEnter={() => setHovered(true)}
+                  onMouseLeave={() => setHovered(false)}
                 >
                   {/* Background images carousel */}
                   {promo.backgroundImages.map((img, idx) => (
@@ -444,6 +454,7 @@ const Home: React.FC = () => {
                         <span
                           key={idx}
                           className={`promo-banner__dot ${idx === currentBgIndex ? 'active' : ''}`}
+                          onClick={() => setIndex(idx)}
                         />
                       ))}
                     </div>
