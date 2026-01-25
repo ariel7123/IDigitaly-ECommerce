@@ -337,7 +337,6 @@ const Home: React.FC = () => {
         <div className="video-hero__content">
           <span className="video-hero__tagline">משווק מורשה של Apple</span>
           <h1 className="video-hero__title">
-            ברוכים הבאים
             <span className="video-hero__title-highlight">IDigitaly</span>
           </h1>
           <p className="video-hero__subtitle">
