@@ -54,12 +54,12 @@ const featuredProducts = [
   },
   {
     id: '5',
-    name: 'MacBook Pro 14" M5',
-    description: 'M5 chip. גרפיקה מהירה פי 1.6. SSD מהיר פי 2. עד 24 שעות סוללה.',
+    name: 'MacBook Pro 16" M4',
+    description: 'M4 chip. גרפיקה מהירה פי 1.6. SSD מהיר פי 2. עד 24 שעות סוללה.',
     price: 7999,
     category: 'mac',
-    image: '/images/macbook-pro-m5-14.png',
-    badge: 'M5 חדש',
+    image: '/images/macbook-pro-m4-16.png',
+    badge: 'M4 חדש',
     colors: ['#1f1f1f', '#86868b'],
   },
   {
@@ -73,12 +73,12 @@ const featuredProducts = [
   },
   {
     id: '7',
-    name: 'iPad Pro 13" M5',
-    description: 'M5 chip. ביצועי AI מהירים פי 3.5. Wi-Fi 7. מודם C1X.',
+    name: 'iPad Pro 13" M4',
+    description: 'M4 chip. ביצועי AI מהירים פי 3.5. Wi-Fi 7. מודם C1X.',
     price: 6999,
     category: 'ipad',
-    image: '/images/ipad-air-m5-13.png',
-    badge: 'M5 חדש',
+    image: '/images/ipad-air-m4-13.png',
+    badge: 'M4 חדש',
     colors: ['#86868b', '#1f1f1f'],
   },
   {
