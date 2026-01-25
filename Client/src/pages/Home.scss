@@ -550,6 +550,18 @@
     }
   }
 
+  // Gradient overlay for text readability
+  &__overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 70%;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
   &__dots {
     position: absolute;
     bottom: $spacing-sm;
