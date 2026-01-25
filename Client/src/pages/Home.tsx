@@ -208,11 +208,23 @@ const benefits = [
 const promos = [
   {
     id: 1,
-    title: 'iPhone 15 Pro',
-    subtitle: 'טיטניום. עוצמתי מאי פעם.',
+    title: 'iPhone 17',
+    subtitle: 'A19 Pro. העתיד כבר כאן.',
     cta: 'קנה עכשיו',
-    image: '/images/promos/iphone-promo.png',
-    gradient: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
+    backgroundImages: [
+      '/images/promos/iphone-promo-bg-1.jpg',
+      '/images/promos/iphone-promo-bg-2.jpg',
+      '/images/promos/iphone-promo-bg-3.jpg',
+      '/images/promos/iphone-promo-bg-4.jpg',
+      '/images/promos/iphone-promo-bg-5.jpg',
+      '/images/promos/iphone-promo-bg-6.jpg',
+      '/images/promos/iphone-promo-bg-7.jpg',
+      '/images/promos/iphone-promo-bg-8.jpg',
+      '/images/promos/iphone-promo-bg-9.jpg',
+      '/images/promos/iphone-promo-bg-10.jpg',
+      '/images/promos/iphone-promo-bg-11.jpg',
+    ],
+    gradient: 'linear-gradient(135deg, rgba(26, 26, 46, 0.3) 0%, rgba(22, 33, 62, 0.3) 100%)',
     textColor: 'light',
   },
   {
@@ -220,8 +232,8 @@ const promos = [
     title: 'MacBook Pro',
     subtitle: 'M3 Max. הביצועים שתמיד רצית.',
     cta: 'גלה עוד',
-    image: '/images/promos/macbook-promo.png',
-    gradient: 'linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%)',
+    backgroundImages: ['/images/promos/macbook-promo-bg.jpg'],
+    gradient: 'linear-gradient(135deg, rgba(245, 245, 247, 0.5) 0%, rgba(232, 232, 237, 0.5) 100%)',
     textColor: 'dark',
   },
 ];
@@ -230,6 +242,8 @@ const Home: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [email, setEmail] = useState('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [promoImageIndex, setPromoImageIndex] = useState(0);
+  const [prevPromoImageIndex, setPrevPromoImageIndex] = useState(-1);
 
   // Auto-rotate carousel images every 2.5 seconds
   useEffect(() => {
@@ -241,6 +255,21 @@ const Home: React.FC = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  // Auto-rotate promo banner images every 1.5 seconds
+  useEffect(() => {
+    const iphonePromo = promos.find(p => p.id === 1);
+    if (!iphonePromo || iphonePromo.backgroundImages.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setPrevPromoImageIndex(promoImageIndex);
+      setPromoImageIndex((prevIndex) =>
+        (prevIndex + 1) % iphonePromo.backgroundImages.length
+      );
+    }, 2300);
+
+    return () => clearInterval(interval);
+  }, [promoImageIndex]);
 
   const filteredProducts = activeCategory === 'all'
     ? featuredProducts
@@ -361,19 +390,46 @@ const Home: React.FC = () => {
       <section className="promo-banners">
         <div className="container">
           <div className="promo-banners__grid">
-            {promos.map((promo) => (
-              <div
-                key={promo.id}
-                className={`promo-banner promo-banner--${promo.textColor}`}
-                style={{ background: promo.gradient }}
-              >
-                <div className="promo-banner__content">
-                  <h3 className="promo-banner__title">{promo.title}</h3>
-                  <p className="promo-banner__subtitle">{promo.subtitle}</p>
-                  <button className="promo-banner__cta">{promo.cta}</button>
+            {promos.map((promo) => {
+              const currentBgIndex = promo.id === 1 ? promoImageIndex : 0;
+              return (
+                <div
+                  key={promo.id}
+                  className={`promo-banner promo-banner--${promo.textColor}`}
+                >
+                  {/* Background images carousel */}
+                  {promo.backgroundImages.map((img, idx) => {
+                    const isActive = idx === currentBgIndex;
+                    const isPrev = promo.id === 1 && idx === prevPromoImageIndex;
+                    return (
+                      <div
+                        key={idx}
+                        className={`promo-banner__bg ${isActive ? 'active' : ''} ${isPrev ? 'prev' : ''}`}
+                        style={{
+                          backgroundImage: `${promo.gradient}, url(${img})`,
+                        }}
+                      />
+                    );
+                  })}
+                  <div className="promo-banner__content">
+                    <h3 className="promo-banner__title">{promo.title}</h3>
+                    <p className="promo-banner__subtitle">{promo.subtitle}</p>
+                    <button className="promo-banner__cta">{promo.cta}</button>
+                  </div>
+                  {/* Dots indicator */}
+                  {promo.backgroundImages.length > 1 && (
+                    <div className="promo-banner__dots">
+                      {promo.backgroundImages.map((_, idx) => (
+                        <span
+                          key={idx}
+                          className={`promo-banner__dot ${idx === currentBgIndex ? 'active' : ''}`}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
