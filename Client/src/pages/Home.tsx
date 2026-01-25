@@ -229,12 +229,24 @@ const promos = [
   },
   {
     id: 2,
-    title: 'MacBook Pro',
-    subtitle: 'M3 Max. הביצועים שתמיד רצית.',
+    title: 'Mac',
+    subtitle: 'עוצמה. ביצועים. יצירתיות.',
     cta: 'גלה עוד',
-    backgroundImages: ['/images/promos/macbook-promo-bg.jpg'],
-    gradient: 'linear-gradient(135deg, rgba(245, 245, 247, 0.5) 0%, rgba(232, 232, 237, 0.5) 100%)',
-    textColor: 'dark',
+    backgroundImages: [
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-1.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-2.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-3.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-4.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-5.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-6.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-7.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-8.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-9.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-10.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-11.jpg',
+    ],
+    gradient: 'linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)',
+    textColor: 'light',
   },
 ];
 
@@ -243,6 +255,7 @@ const Home: React.FC = () => {
   const [email, setEmail] = useState('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [promoImageIndex, setPromoImageIndex] = useState(0);
+  const [macPromoImageIndex, setMacPromoImageIndex] = useState(0);
 
   // Auto-rotate carousel images every 2.5 seconds
   useEffect(() => {
@@ -255,7 +268,7 @@ const Home: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Auto-rotate promo banner images every 1.5 seconds
+  // Auto-rotate iPhone promo banner images
   useEffect(() => {
     const iphonePromo = promos.find(p => p.id === 1);
     if (!iphonePromo || iphonePromo.backgroundImages.length <= 1) return;
@@ -263,6 +276,20 @@ const Home: React.FC = () => {
     const interval = setInterval(() => {
       setPromoImageIndex((prevIndex) =>
         (prevIndex + 1) % iphonePromo.backgroundImages.length
+      );
+    }, 2300);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Auto-rotate Mac promo banner images
+  useEffect(() => {
+    const macPromo = promos.find(p => p.id === 2);
+    if (!macPromo || macPromo.backgroundImages.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setMacPromoImageIndex((prevIndex) =>
+        (prevIndex + 1) % macPromo.backgroundImages.length
       );
     }, 2300);
 
@@ -389,7 +416,7 @@ const Home: React.FC = () => {
         <div className="container">
           <div className="promo-banners__grid">
             {promos.map((promo) => {
-              const currentBgIndex = promo.id === 1 ? promoImageIndex : 0;
+              const currentBgIndex = promo.id === 1 ? promoImageIndex : promo.id === 2 ? macPromoImageIndex : 0;
               return (
                 <div
                   key={promo.id}
