@@ -442,6 +442,8 @@ const Home: React.FC = () => {
                       }}
                     />
                   ))}
+                  {/* Gradient overlay for text readability */}
+                  <div className="promo-banner__overlay" />
                   <div className="promo-banner__content">
                     <h3 className="promo-banner__title">{promo.title}</h3>
                     <p className="promo-banner__subtitle">{promo.subtitle}</p>
