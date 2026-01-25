@@ -208,8 +208,8 @@ const benefits = [
 const promos = [
   {
     id: 1,
-    title: 'iPhone 17',
-    subtitle: 'A19 Pro. העתיד כבר כאן.',
+    title: 'iPhone 17 Pro',
+    subtitle: 'הדור הבא של החדשנות. עיצוב מרהיב, ביצועים ללא תחרות.',
     cta: 'קנה עכשיו',
     backgroundImages: [
       '/images/promos/iphone-promo-bg-1.jpg',
@@ -224,17 +224,29 @@ const promos = [
       '/images/promos/iphone-promo-bg-10.jpg',
       '/images/promos/iphone-promo-bg-11.jpg',
     ],
-    gradient: 'linear-gradient(135deg, rgba(26, 26, 46, 0.3) 0%, rgba(22, 33, 62, 0.3) 100%)',
+    gradient: 'linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)',
     textColor: 'light',
   },
   {
     id: 2,
-    title: 'MacBook Pro',
-    subtitle: 'M3 Max. הביצועים שתמיד רצית.',
+    title: 'Mac',
+    subtitle: 'כוח-על שפותח את הדלת ליצירתיות בלתי מוגבלת.',
     cta: 'גלה עוד',
-    backgroundImages: ['/images/promos/macbook-promo-bg.jpg'],
-    gradient: 'linear-gradient(135deg, rgba(245, 245, 247, 0.5) 0%, rgba(232, 232, 237, 0.5) 100%)',
-    textColor: 'dark',
+    backgroundImages: [
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-1.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-2.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-3.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-4.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-5.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-6.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-7.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-8.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-9.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-10.jpg',
+      '/images/promos/macbooks%20for%20banner/macbook-promo-bg-11.jpg',
+    ],
+    gradient: 'linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)',
+    textColor: 'light',
   },
 ];
 
@@ -243,7 +255,9 @@ const Home: React.FC = () => {
   const [email, setEmail] = useState('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [promoImageIndex, setPromoImageIndex] = useState(0);
-  const [prevPromoImageIndex, setPrevPromoImageIndex] = useState(-1);
+  const [macPromoImageIndex, setMacPromoImageIndex] = useState(0);
+  const [isIphonePromoHovered, setIsIphonePromoHovered] = useState(false);
+  const [isMacPromoHovered, setIsMacPromoHovered] = useState(false);
 
   // Auto-rotate carousel images every 2.5 seconds
   useEffect(() => {
@@ -256,20 +270,37 @@ const Home: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Auto-rotate promo banner images every 1.5 seconds
+  // Auto-rotate iPhone promo banner images
   useEffect(() => {
     const iphonePromo = promos.find(p => p.id === 1);
     if (!iphonePromo || iphonePromo.backgroundImages.length <= 1) return;
 
     const interval = setInterval(() => {
-      setPrevPromoImageIndex(promoImageIndex);
-      setPromoImageIndex((prevIndex) =>
-        (prevIndex + 1) % iphonePromo.backgroundImages.length
-      );
+      if (!isIphonePromoHovered) {
+        setPromoImageIndex((prevIndex) =>
+          (prevIndex + 1) % iphonePromo.backgroundImages.length
+        );
+      }
     }, 2300);
 
     return () => clearInterval(interval);
-  }, [promoImageIndex]);
+  }, [isIphonePromoHovered]);
+
+  // Auto-rotate Mac promo banner images
+  useEffect(() => {
+    const macPromo = promos.find(p => p.id === 2);
+    if (!macPromo || macPromo.backgroundImages.length <= 1) return;
+
+    const interval = setInterval(() => {
+      if (!isMacPromoHovered) {
+        setMacPromoImageIndex((prevIndex) =>
+          (prevIndex + 1) % macPromo.backgroundImages.length
+        );
+      }
+    }, 2300);
+
+    return () => clearInterval(interval);
+  }, [isMacPromoHovered]);
 
   const filteredProducts = activeCategory === 'all'
     ? featuredProducts
@@ -391,26 +422,28 @@ const Home: React.FC = () => {
         <div className="container">
           <div className="promo-banners__grid">
             {promos.map((promo) => {
-              const currentBgIndex = promo.id === 1 ? promoImageIndex : 0;
+              const currentBgIndex = promo.id === 1 ? promoImageIndex : promo.id === 2 ? macPromoImageIndex : 0;
+              const setHovered = promo.id === 1 ? setIsIphonePromoHovered : setIsMacPromoHovered;
+              const setIndex = promo.id === 1 ? setPromoImageIndex : setMacPromoImageIndex;
               return (
                 <div
                   key={promo.id}
                   className={`promo-banner promo-banner--${promo.textColor}`}
+                  onMouseEnter={() => setHovered(true)}
+                  onMouseLeave={() => setHovered(false)}
                 >
                   {/* Background images carousel */}
-                  {promo.backgroundImages.map((img, idx) => {
-                    const isActive = idx === currentBgIndex;
-                    const isPrev = promo.id === 1 && idx === prevPromoImageIndex;
-                    return (
-                      <div
-                        key={idx}
-                        className={`promo-banner__bg ${isActive ? 'active' : ''} ${isPrev ? 'prev' : ''}`}
-                        style={{
-                          backgroundImage: `${promo.gradient}, url(${img})`,
-                        }}
-                      />
-                    );
-                  })}
+                  {promo.backgroundImages.map((img, idx) => (
+                    <div
+                      key={idx}
+                      className={`promo-banner__bg ${idx === currentBgIndex ? 'active' : ''}`}
+                      style={{
+                        backgroundImage: `url(${img})`,
+                      }}
+                    />
+                  ))}
+                  {/* Gradient overlay for text readability */}
+                  <div className="promo-banner__overlay" />
                   <div className="promo-banner__content">
                     <h3 className="promo-banner__title">{promo.title}</h3>
                     <p className="promo-banner__subtitle">{promo.subtitle}</p>
@@ -423,6 +456,7 @@ const Home: React.FC = () => {
                         <span
                           key={idx}
                           className={`promo-banner__dot ${idx === currentBgIndex ? 'active' : ''}`}
+                          onClick={() => setIndex(idx)}
                         />
                       ))}
                     </div>
