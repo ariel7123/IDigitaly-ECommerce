@@ -224,7 +224,7 @@ const promos = [
       '/images/promos/iphone-promo-bg-10.jpg',
       '/images/promos/iphone-promo-bg-11.jpg',
     ],
-    gradient: 'linear-gradient(135deg, rgba(26, 26, 46, 0.3) 0%, rgba(22, 33, 62, 0.3) 100%)',
+    gradient: 'linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%)',
     textColor: 'light',
   },
   {
@@ -243,7 +243,6 @@ const Home: React.FC = () => {
   const [email, setEmail] = useState('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [promoImageIndex, setPromoImageIndex] = useState(0);
-  const [prevPromoImageIndex, setPrevPromoImageIndex] = useState(-1);
 
   // Auto-rotate carousel images every 2.5 seconds
   useEffect(() => {
@@ -262,14 +261,13 @@ const Home: React.FC = () => {
     if (!iphonePromo || iphonePromo.backgroundImages.length <= 1) return;
 
     const interval = setInterval(() => {
-      setPrevPromoImageIndex(promoImageIndex);
       setPromoImageIndex((prevIndex) =>
         (prevIndex + 1) % iphonePromo.backgroundImages.length
       );
     }, 2300);
 
     return () => clearInterval(interval);
-  }, [promoImageIndex]);
+  }, []);
 
   const filteredProducts = activeCategory === 'all'
     ? featuredProducts
@@ -398,19 +396,15 @@ const Home: React.FC = () => {
                   className={`promo-banner promo-banner--${promo.textColor}`}
                 >
                   {/* Background images carousel */}
-                  {promo.backgroundImages.map((img, idx) => {
-                    const isActive = idx === currentBgIndex;
-                    const isPrev = promo.id === 1 && idx === prevPromoImageIndex;
-                    return (
-                      <div
-                        key={idx}
-                        className={`promo-banner__bg ${isActive ? 'active' : ''} ${isPrev ? 'prev' : ''}`}
-                        style={{
-                          backgroundImage: `${promo.gradient}, url(${img})`,
-                        }}
-                      />
-                    );
-                  })}
+                  {promo.backgroundImages.map((img, idx) => (
+                    <div
+                      key={idx}
+                      className={`promo-banner__bg ${idx === currentBgIndex ? 'active' : ''}`}
+                      style={{
+                        backgroundImage: `url(${img})`,
+                      }}
+                    />
+                  ))}
                   <div className="promo-banner__content">
                     <h3 className="promo-banner__title">{promo.title}</h3>
                     <p className="promo-banner__subtitle">{promo.subtitle}</p>
