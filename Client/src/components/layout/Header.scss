@@ -13,6 +13,7 @@
   &__content {
     @include flex-between;
     padding: $spacing-xs 0;
+    position: relative;
   }
 
   &__actions {
@@ -63,6 +64,10 @@
 }
 
 .nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
   @include mobile {
     display: none;
   }
