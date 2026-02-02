@@ -6,17 +6,20 @@ const teamMembers = [
   {
     name: 'אריאל כהן',
     role: 'מייסד ומנכ"ל',
-    image: '/images/team/ceo.jpg',
+    image: '/images/Team/ArielCohen.png',
+    imageStyle: { transform: 'scale(1)', objectPosition: '90% center' },
   },
   {
     name: 'מיכל לוי',
     role: 'מנהלת שירות לקוחות',
-    image: '/images/team/customer-service.jpg',
+    image: '/images/Team/MichalLevi.png',
+    imageStyle: { transform: 'scale(1)', objectPosition: 'center center' },
   },
   {
     name: 'יוסי אברהם',
     role: 'מומחה טכני',
-    image: '/images/team/tech-expert.jpg',
+    image: '/images/Team/YosiAvraham.png',
+    imageStyle: { transform: 'scale(1)', objectPosition: '55% center' },
   },
 ];
 
@@ -84,8 +87,17 @@ const About: React.FC = () => {
                 וצוות מומחים מסור, אנחנו ממשיכים להוביל את התחום.
               </p>
             </div>
-            <div className="about-story__image">
-              <img src="/images/about/store.jpg" alt="חנות IDigitaly" />
+            <div className="about-story__map">
+              <iframe
+                src="https://maps.google.com/maps?q=Kiryat+Atidim,+Tel+Aviv,+Israel&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="400"
+                style={{ border: 0, borderRadius: '16px' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="מיקום המשרד"
+              />
             </div>
           </div>
         </div>
@@ -142,7 +154,7 @@ const About: React.FC = () => {
             {teamMembers.map((member, index) => (
               <div key={index} className="team-card">
                 <div className="team-card__image">
-                  <img src={member.image} alt={member.name} />
+                  <img src={member.image} alt={member.name} style={member.imageStyle} />
                 </div>
                 <h3 className="team-card__name">{member.name}</h3>
                 <p className="team-card__role">{member.role}</p>

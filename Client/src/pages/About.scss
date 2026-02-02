@@ -119,6 +119,20 @@
       }
     }
   }
+
+  &__map {
+    border-radius: $border-radius-xl;
+    overflow: hidden;
+    box-shadow: $shadow-xl;
+
+    iframe {
+      display: block;
+
+      @include mobile {
+        height: 250px;
+      }
+    }
+  }
 }
 
 // Values Section
@@ -322,8 +336,8 @@
   }
 
   &__image {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto $spacing-lg;
