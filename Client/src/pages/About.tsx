@@ -6,17 +6,20 @@ const teamMembers = [
   {
     name: 'אריאל כהן',
     role: 'מייסד ומנכ"ל',
-    image: '/images/team/ceo.jpg',
+    image: '/images/Team/ArielCohen.png',
+    imageStyle: { transform: 'scale(1)', objectPosition: '90% center' },
   },
   {
     name: 'מיכל לוי',
     role: 'מנהלת שירות לקוחות',
-    image: '/images/team/customer-service.jpg',
+    image: '/images/Team/MichalLevi.png',
+    imageStyle: { transform: 'scale(1)', objectPosition: 'center center' },
   },
   {
     name: 'יוסי אברהם',
     role: 'מומחה טכני',
-    image: '/images/team/tech-expert.jpg',
+    image: '/images/Team/YosiAvraham.png',
+    imageStyle: { transform: 'scale(1)', objectPosition: '55% center' },
   },
 ];
 
@@ -142,7 +145,7 @@ const About: React.FC = () => {
             {teamMembers.map((member, index) => (
               <div key={index} className="team-card">
                 <div className="team-card__image">
-                  <img src={member.image} alt={member.name} />
+                  <img src={member.image} alt={member.name} style={member.imageStyle} />
                 </div>
                 <h3 className="team-card__name">{member.name}</h3>
                 <p className="team-card__role">{member.role}</p>
