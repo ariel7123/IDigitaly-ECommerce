@@ -7,9 +7,11 @@ import { AuthRequest } from '../middleware';
 
 // Generate JWT token
 const generateToken = (userId: string): string => {
-  return jwt.sign({ userId }, config.JWT_SECRET, {
-    expiresIn: config.JWT_EXPIRES_IN
-  });
+  return jwt.sign(
+    { userId },
+    config.JWT_SECRET as jwt.Secret,
+    { expiresIn: config.JWT_EXPIRES_IN } as jwt.SignOptions
+  );
 };
 
 // Set token in httpOnly cookie
