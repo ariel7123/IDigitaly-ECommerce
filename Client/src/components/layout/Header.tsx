@@ -27,7 +27,7 @@ const Header: React.FC = () => {
             <ul className="nav__list">
               <li><a href="#" className="nav__link" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>בית</a></li>
               <li><a href="#products" className="nav__link">מוצרים</a></li>
-              <li><a href="#about" className="nav__link">אודות</a></li>
+              <li><Link to="/about" className="nav__link">אודות</Link></li>
             </ul>
           </nav>
 
