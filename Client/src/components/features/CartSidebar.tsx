@@ -29,14 +29,14 @@ const CartSidebar: React.FC = () => {
       <div className="cart-overlay" onClick={handleClose} />
       <div className="cart-content">
         <div className="cart-header">
-          <h3>Shopping Cart</h3>
+          <h3>עגלת קניות</h3>
           <button className="cart-close" onClick={handleClose}>×</button>
         </div>
 
         <div className="cart-items">
           {cart.length === 0 ? (
             <div className="cart-empty">
-              <p>Your cart is empty</p>
+              <p>העגלה שלך ריקה</p>
             </div>
           ) : (
             cart.map((item) => (
@@ -44,7 +44,7 @@ const CartSidebar: React.FC = () => {
                 <div className="cart-item__image">{item.image || '📦'}</div>
                 <div className="cart-item__details">
                   <h4 className="cart-item__name">{item.name}</h4>
-                  <p className="cart-item__price">${item.price}</p>
+                  <p className="cart-item__price">₪{item.price}</p>
                   <div className="cart-item__quantity">
                     <button
                       className="quantity-btn"
@@ -75,13 +75,13 @@ const CartSidebar: React.FC = () => {
         {cart.length > 0 && (
           <div className="cart-footer">
             <div className="cart-total">
-              <span>Total: ${totalPrice.toFixed(2)}</span>
+              <span>סה״כ: ₪{totalPrice.toFixed(2)}</span>
             </div>
             <div className="cart-actions">
               <button className="btn btn--secondary" onClick={clearCart}>
-                Clear
+                נקה
               </button>
-              <button className="btn btn--primary">Checkout</button>
+              <button className="btn btn--primary">לתשלום</button>
             </div>
           </div>
         )}
