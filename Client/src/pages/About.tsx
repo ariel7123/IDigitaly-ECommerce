@@ -87,8 +87,17 @@ const About: React.FC = () => {
                 וצוות מומחים מסור, אנחנו ממשיכים להוביל את התחום.
               </p>
             </div>
-            <div className="about-story__image">
-              <img src="/images/about/store.jpg" alt="חנות IDigitaly" />
+            <div className="about-story__map">
+              <iframe
+                src="https://maps.google.com/maps?q=Kiryat+Atidim,+Tel+Aviv,+Israel&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="400"
+                style={{ border: 0, borderRadius: '16px' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="מיקום המשרד"
+              />
             </div>
           </div>
         </div>
