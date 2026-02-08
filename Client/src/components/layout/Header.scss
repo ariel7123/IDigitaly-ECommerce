@@ -74,20 +74,107 @@
 
   &__list {
     @include flex-center;
-    gap: $spacing-lg;
+    gap: $spacing-md;
     list-style: none;
   }
 
   &__link {
     color: $gray-700;
-    font-size: $font-size-sm;
+    font-size: $font-size-base;
     font-weight: $font-weight-medium;
-    transition: color $transition-fast;
+    transition: all 0.3s ease;
     white-space: nowrap;
+    position: relative;
+    padding: $spacing-xs 0;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: $primary-color;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
 
     &:hover {
       color: $primary-color;
+
+      &::after {
+        width: 100%;
+      }
     }
+  }
+
+  &__item {
+    position: relative;
+
+    &--dropdown:hover .nav__dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    padding: $spacing-sm;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 2px;
+      transform: translateX(-50%) rotate(45deg);
+      box-shadow: -2px -2px 4px rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  &__dropdown-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    color: $gray-800;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 10px;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    margin: 2px 0;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+      color: $gray-900;
+    }
+  }
+
+  &__badge {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
   }
 }
 
