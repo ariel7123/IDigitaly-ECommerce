@@ -25,9 +25,13 @@ const Header: React.FC = () => {
 
           <nav className="nav">
             <ul className="nav__list">
-              <li><a href="#" className="nav__link" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>בית</a></li>
-              <li><a href="#products" className="nav__link">מוצרים</a></li>
-              <li><Link to="/about" className="nav__link">אודות</Link></li>
+              <li><Link to="/category/iphone" className="nav__link">iPhone</Link></li>
+              <li><Link to="/category/ipad" className="nav__link">iPad</Link></li>
+              <li><Link to="/category/mac" className="nav__link">Mac</Link></li>
+              <li><Link to="/category/watch" className="nav__link">Apple Watch</Link></li>
+              <li><Link to="/category/airpods" className="nav__link">AirPods</Link></li>
+              <li><Link to="/category/tv" className="nav__link">Apple TV</Link></li>
+              <li><Link to="/category/accessories" className="nav__link">Accessories</Link></li>
             </ul>
           </nav>
 
