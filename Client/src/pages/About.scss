@@ -313,7 +313,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: $spacing-xl;
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto;
 
     @include mobile {
@@ -336,8 +336,8 @@
   }
 
   &__image {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto $spacing-lg;
@@ -358,7 +358,7 @@
   }
 
   &__role {
-    font-size: $font-size-sm;
+    font-size: $font-size-base;
     color: $gray-500;
   }
 }
