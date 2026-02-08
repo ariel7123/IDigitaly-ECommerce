@@ -74,14 +74,16 @@
 
   &__list {
     @include flex-center;
-    gap: $spacing-xl;
+    gap: $spacing-lg;
     list-style: none;
   }
 
   &__link {
-    color: $gray-600;
+    color: $gray-700;
+    font-size: $font-size-sm;
     font-weight: $font-weight-medium;
     transition: color $transition-fast;
+    white-space: nowrap;
 
     &:hover {
       color: $primary-color;
