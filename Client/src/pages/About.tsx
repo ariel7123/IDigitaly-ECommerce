@@ -4,22 +4,25 @@ import './About.scss';
 
 const teamMembers = [
   {
-    name: 'אריאל כהן',
-    role: 'מייסד ומנכ"ל',
-    image: '/images/Team/ArielCohen.png',
-    imageStyle: { transform: 'scale(1)', objectPosition: '90% center' },
-  },
-  {
     name: 'מיכל לוי',
     role: 'מנהלת שירות לקוחות',
     image: '/images/Team/MichalLevi.png',
     imageStyle: { transform: 'scale(1)', objectPosition: 'center center' },
+    isCeo: false,
+  },
+  {
+    name: 'אריאל כהן',
+    role: 'מייסד ומנכ"ל',
+    image: '/images/Team/ArielCohen.png',
+    imageStyle: { transform: 'scale(1)', objectPosition: '90% center' },
+    isCeo: true,
   },
   {
     name: 'יוסי אברהם',
     role: 'מומחה טכני',
     image: '/images/Team/YosiAvraham.png',
     imageStyle: { transform: 'scale(1)', objectPosition: '55% center' },
+    isCeo: false,
   },
 ];
 
@@ -152,7 +155,7 @@ const About: React.FC = () => {
           </div>
           <div className="about-team__grid">
             {teamMembers.map((member, index) => (
-              <div key={index} className="team-card">
+              <div key={index} className={`team-card ${member.isCeo ? 'team-card--ceo' : ''}`}>
                 <div className="team-card__image">
                   <img src={member.image} alt={member.name} style={member.imageStyle} />
                 </div>
