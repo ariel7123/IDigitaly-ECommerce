@@ -94,14 +94,14 @@ const Header: React.FC = () => {
     <header className="header">
       <div className="container">
         <div className="header__content">
-          <a href="#" className="logo" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+          <Link to="/" className="logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <img src="/images/Apple_logo_black.svg" alt="Apple" className="logo__apple" />
             <h1>IDigitaly</h1>
-          </a>
+          </Link>
 
           <nav className="nav">
             <ul className="nav__list">
-              <li><a href="#" className="nav__link" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>בית</a></li>
+              <li><Link to="/" className="nav__link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>בית</Link></li>
               <li><a href="#products" className="nav__link">מוצרים</a></li>
 
               {Object.entries(categoryMenus).map(([key, category]) => (
