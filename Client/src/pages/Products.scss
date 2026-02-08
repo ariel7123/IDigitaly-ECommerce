@@ -249,7 +249,7 @@
   }
 
   &__content {
-    padding: $spacing-lg;
+    padding: $spacing-sm $spacing-lg;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
