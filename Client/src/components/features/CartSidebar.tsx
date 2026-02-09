@@ -30,6 +30,7 @@ const CartSidebar: React.FC = () => {
       <div className="cart-content">
         <div className="cart-header">
           <h3>עגלת קניות</h3>
+          <p></p>
           <button className="cart-close" onClick={handleClose}>×</button>
         </div>
 
