@@ -102,7 +102,7 @@ const Header: React.FC = () => {
           <nav className="nav">
             <ul className="nav__list">
               <li><Link to="/" className="nav__link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>בית</Link></li>
-              <li><a href="#products" className="nav__link">מוצרים</a></li>
+              <li><Link to="/products" className="nav__link">מוצרים</Link></li>
 
               {Object.entries(categoryMenus).map(([key, category]) => (
                 <li key={key} className="nav__item nav__item--dropdown">

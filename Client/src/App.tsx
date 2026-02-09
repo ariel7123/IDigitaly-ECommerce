@@ -4,10 +4,12 @@ import { useAuth } from './store';
 
 // Layout
 import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
 
 // Pages
 import Home from './pages/Home';
 import About from './pages/About';
+import Products from './pages/Products';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
@@ -34,6 +36,7 @@ function App() {
       <main className="main">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -42,6 +45,7 @@ function App() {
 
       <CartSidebar />
       <Toast />
+      <Footer />
     </div>
   );
 }

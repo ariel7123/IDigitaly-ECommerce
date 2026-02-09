@@ -176,7 +176,7 @@ const About: React.FC = () => {
               גלו את מגוון מוצרי Apple שלנו והצטרפו לאלפי לקוחות מרוצים
             </p>
             <div className="about-cta__buttons">
-              <a href="/#products" className="about-cta__btn about-cta__btn--primary">
+              <a href="/products" className="about-cta__btn about-cta__btn--primary">
                 צפה במוצרים
               </a>
               <a href="/contact" className="about-cta__btn about-cta__btn--secondary">
