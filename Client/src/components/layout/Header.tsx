@@ -4,7 +4,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth, useCart } from '../../store';
 import './Header.scss';
 
-const categoryMenus = {
+interface MenuItem {
+  name: string;
+  path: string;
+  isNew?: boolean;
+  subItems?: MenuItem[];
+}
+
+interface CategoryMenu {
+  title: string;
+  image: string;
+  items: MenuItem[];
+}
+
+const categoryMenus: Record<string, CategoryMenu> = {
   iphone: {
     title: 'iPhone',
     image: '/images/iphone-17-pro-max.png',
@@ -12,8 +25,26 @@ const categoryMenus = {
       { name: 'iPhone 17 Pro Max', path: '/product/iphone-17-pro-max', isNew: true },
       { name: 'iPhone 17 Pro', path: '/product/iphone-17-pro', isNew: true },
       { name: 'iPhone 17 Air', path: '/product/iphone-17-air', isNew: true },
-      { name: 'iPhone 17', path: '/product/iphone-17' },
-      { name: 'iPhone 16', path: '/product/iphone-16' },
+      { name: 'iPhone 17', path: '/product/iphone-17', isNew: true },
+      {
+        name: 'iPhone 16', path: '/category/iphone-16', subItems: [
+          { name: 'iPhone 16 Pro Max', path: '/product/iphone-16-pro-max' },
+          { name: 'iPhone 16 Plus', path: '/product/iphone-16-plus' },
+          { name: 'iPhone 16e', path: '/product/iphone-16e' },
+          { name: 'iPhone 16', path: '/product/iphone-16' },
+        ]
+      },
+      {
+        name: 'iPhone 15', path: '/category/iphone-15', subItems: [
+          { name: 'iPhone 15', path: '/product/iphone-15' },
+        ]
+      },
+      {
+        name: 'iPhone 14', path: '/category/iphone-14', subItems: [
+          { name: 'iPhone 14 Plus', path: '/product/iphone-14-plus' },
+          { name: 'iPhone 14', path: '/product/iphone-14' },
+        ]
+      },
       { name: 'אביזרי iPhone', path: '/category/iphone/accessories' },
     ]
   },
@@ -115,10 +146,26 @@ const Header: React.FC = () => {
                     <div className="nav__dropdown-content">
                       <div className="nav__dropdown-links">
                         {category.items.map((item) => (
-                          <Link key={item.path} to={item.path} className="nav__dropdown-link">
-                            {item.name}
-                            {item.isNew && <span className="nav__badge">חדש</span>}
-                          </Link>
+                          item.subItems ? (
+                            <div key={item.path} className="nav__submenu-wrapper">
+                              <span className="nav__dropdown-link nav__dropdown-link--has-sub">
+                                {item.name}
+                                <span className="nav__chevron">&#8250;</span>
+                              </span>
+                              <div className="nav__submenu">
+                                {item.subItems.map((sub) => (
+                                  <Link key={sub.path} to={sub.path} className="nav__dropdown-link">
+                                    {sub.name}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            <Link key={item.path} to={item.path} className="nav__dropdown-link">
+                              {item.name}
+                              {item.isNew && <span className="nav__badge">חדש</span>}
+                            </Link>
+                          )
                         ))}
                       </div>
                       <div className="nav__dropdown-divider"></div>
