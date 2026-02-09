@@ -4,6 +4,7 @@ import { useAuth } from './store';
 
 // Layout
 import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
 
 // Pages
 import Home from './pages/Home';
@@ -44,6 +45,7 @@ function App() {
 
       <CartSidebar />
       <Toast />
+      <Footer />
     </div>
   );
 }
