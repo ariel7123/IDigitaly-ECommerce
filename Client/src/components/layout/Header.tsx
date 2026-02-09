@@ -60,10 +60,12 @@ const categoryMenus = {
     ]
   },
   tv: {
-    title: 'TV',
-    image: '/images/Apple_logo_black.svg',
+    title: 'TV & Home',
+    image: '/images/appletv4k.png',
     items: [
-      { name: 'Apple TV 4K', path: '/product/apple-tv-4k' },
+      { name: 'Apple TV 4K', path: '/product/apple-tv-4k', isNew: true },
+      { name: 'HomePod', path: '/product/homepod' },
+      { name: 'HomePod mini', path: '/product/homepod-mini' },
       { name: 'אביזרים', path: '/category/tv/accessories' },
     ]
   },
