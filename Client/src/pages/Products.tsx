@@ -284,26 +284,28 @@ const Products: React.FC = () => {
                 <div className="product-card__content">
                   <h3 className="product-card__name">{product.name}</h3>
                   <p className="product-card__description">{product.description}</p>
-                  {product.colors && product.colors.length > 0 && (
-                    <div className="product-card__colors">
-                      {product.colors.map((color, idx) => (
-                        <span
-                          key={idx}
-                          className="product-card__color"
-                          style={{ backgroundColor: color }}
-                        />
-                      ))}
+                  <div className="product-card__info-row">
+                    <div className="product-card__pricing">
+                      <div className="product-card__price">
+                        <span className="product-card__price-label">החל מ-</span>
+                        <span className="product-card__price-value">{formatPrice(product.price)} ש"ח</span>
+                      </div>
+                      {product.eilatPrice && (
+                        <div className="product-card__eilat">
+                          <span className="product-card__eilat-label">מחיר אילת:</span>
+                          <span className="product-card__eilat-value">{formatPrice(product.eilatPrice)} ש"ח</span>
+                        </div>
+                      )}
                     </div>
-                  )}
-                  <div className="product-card__pricing">
-                    <div className="product-card__price">
-                      <span className="product-card__price-label">החל מ-</span>
-                      <span className="product-card__price-value">{formatPrice(product.price)} ש"ח</span>
-                    </div>
-                    {product.eilatPrice && (
-                      <div className="product-card__eilat">
-                        <span className="product-card__eilat-label">מחיר אילת:</span>
-                        <span className="product-card__eilat-value">{formatPrice(product.eilatPrice)} ש"ח</span>
+                    {product.colors && product.colors.length > 0 && (
+                      <div className="product-card__colors">
+                        {product.colors.map((color, idx) => (
+                          <span
+                            key={idx}
+                            className="product-card__color"
+                            style={{ backgroundColor: color }}
+                          />
+                        ))}
                       </div>
                     )}
                   </div>

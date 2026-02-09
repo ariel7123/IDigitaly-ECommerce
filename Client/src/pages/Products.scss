@@ -276,11 +276,19 @@
     flex-grow: 1;
   }
 
+  &__info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-sm;
+  }
+
   &__colors {
     display: flex;
     gap: 6px;
-    margin-bottom: $spacing-sm;
-    justify-content: flex-end;
+    align-items: center;
+    flex-shrink: 0;
   }
 
   &__color {
@@ -292,16 +300,14 @@
   }
 
   &__pricing {
-    margin-bottom: $spacing-md;
     text-align: right;
   }
 
   &__price {
     display: flex;
-    justify-content: flex-end;
     align-items: baseline;
     gap: $spacing-xs;
-    margin-bottom: $spacing-xs;
+    white-space: nowrap;
   }
 
   &__price-label {
@@ -310,16 +316,16 @@
   }
 
   &__price-value {
-    font-size: $font-size-xl;
+    font-size: $font-size-lg;
     font-weight: $font-weight-bold;
     color: $gray-900;
   }
 
   &__eilat {
     display: flex;
-    justify-content: flex-end;
     align-items: baseline;
     gap: $spacing-xs;
+    white-space: nowrap;
   }
 
   &__eilat-label {
