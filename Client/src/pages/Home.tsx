@@ -1,5 +1,6 @@
 // client/src/pages/Home.tsx
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.scss';
 
 // iPhone 17 Pro Max carousel images - add your images here
@@ -11,119 +12,144 @@ const proMaxImages = [
 ];
 
 // Apple Products Data - Latest 2025 Models
-// Replace placeholder images with actual product images in /public/images/products/
 const featuredProducts = [
   {
-    id: '1',
+    id: 'iphone-17-pro-max',
     name: 'iPhone 17 Pro Max',
-    description: 'A19 Pro. קירור Vapor Chamber. מצלמת טלפוטו 4x/8x. הסוללה הגדולה ביותר.',
+    description: 'השיא של iPhone. מצלמה 48MP משופרת, שבב A19 Pro העוצמתי ביותר, וסוללה שמחזיקה יותר מאי פעם.',
     price: 6499,
-    originalPrice: 6799,
+    eilatPrice: 5499,
     category: 'iphone',
     image: '/images/iphone-17-pro-max.png',
-    badge: 'חדש',
-    colors: ['#c5b8a5', '#1f1f1f', '#f5f5f0', '#757779'],
+    isNew: true,
+    path: '/product/iphone-17-pro-max',
+    colors: ['#C4BCB1', '#1C1C1C', '#F5F5F7', '#B8A68E'],
   },
   {
-    id: '2',
+    id: 'iphone-17-pro',
     name: 'iPhone 17 Pro',
-    description: 'A19 Pro chip. קירור Vapor Chamber. 256GB בסיס. מצלמת טלפוטו משודרגת.',
-    price: 5799,
+    description: 'ביצועי Pro בגודל מושלם. מצלמה פרו, מסך ProMotion, ועיצוב טיטניום קל משקל.',
+    price: 5499,
+    eilatPrice: 4649,
     category: 'iphone',
     image: '/images/iphone-17-pro.png',
-    colors: ['#c5b8a5', '#1f1f1f', '#f5f5f0', '#757779'],
+    isNew: true,
+    path: '/product/iphone-17-pro',
+    colors: ['#C4BCB1', '#1C1C1C', '#F5F5F7', '#B8A68E'],
   },
   {
-    id: '3',
+    id: 'iphone-17-air',
     name: 'iPhone 17 Air',
-    description: 'A19 Pro. הדק ביותר - 5.6 מ״מ. מסגרת טיטניום. 6.5 אינץ\'.',
-    price: 4799,
+    description: 'הדק ביותר אי פעם. עיצוב אלגנטי במיוחד עם כל היכולות שאתה צריך.',
+    price: 4299,
+    eilatPrice: 3639,
     category: 'iphone',
     image: '/images/iphone-17-air.png',
-    badge: 'חדש',
-    colors: ['#f5f5f0', '#1f1f1f', '#c5b8a5'],
+    isNew: true,
+    path: '/product/iphone-17-air',
+    colors: ['#1C1C1C', '#F5F5F7', '#D4C5A9', '#87CEEB'],
   },
   {
-    id: '4',
+    id: 'iphone-17',
     name: 'iPhone 17',
-    description: 'A19 chip. ProMotion 120Hz. Always-On. Wi-Fi 7. Ceramic Shield 2.',
-    price: 3999,
+    description: 'iPhone לכולם. ביצועים מעולים, מצלמה מדהימה, וכל מה שאתה אוהב ב-iPhone.',
+    price: 3699,
+    eilatPrice: 3129,
     category: 'iphone',
     image: '/images/iphone-17.png',
-    colors: ['#3c3c9c', '#e8d4c4', '#cee4dc', '#fadadd', '#1f1f1f'],
+    path: '/product/iphone-17',
+    colors: ['#1C1C1C', '#F5F5F7', '#5B9BD5', '#7FB069', '#F4A5C4'],
   },
   {
-    id: '5',
-    name: 'MacBook Pro 16" M4',
-    description: 'M4 chip. גרפיקה מהירה פי 1.6. SSD מהיר פי 2. עד 24 שעות סוללה.',
-    price: 7999,
+    id: 'macbook-pro-m4',
+    name: 'MacBook Pro M4',
+    description: 'הנייד לאנשי מקצוע. שבב M4 Pro/Max, מסך Liquid Retina XDR, וביצועים שאין שני להם.',
+    price: 8999,
+    eilatPrice: 7599,
     category: 'mac',
     image: '/images/macbook-pro-m4-16.png',
-    badge: 'M4 חדש',
-    colors: ['#1f1f1f', '#86868b'],
+    isNew: true,
+    path: '/product/macbook-pro-m4',
+    colors: ['#1C1C1C', '#E8E8E8'],
   },
   {
-    id: '6',
-    name: 'MacBook Air 15" M4',
-    description: 'M4 chip. 16GB זיכרון. תמיכה ב-2 מסכים. 18 שעות סוללה. צבע Sky Blue חדש.',
-    price: 5999,
+    id: 'macbook-air-m4',
+    name: 'MacBook Air M4',
+    description: 'דק, קל, עוצמתי. שבב M4, סוללה לכל היום, ועיצוב שמושך מבטים.',
+    price: 5499,
+    eilatPrice: 4649,
     category: 'mac',
     image: '/images/macbook-pro-m4-15.png',
-    colors: ['#87CEEB', '#2e3642', '#86868b', '#f5f5f0', '#e3d7c5'],
+    isNew: true,
+    path: '/product/macbook-air-m4',
+    colors: ['#1E3A5F', '#F5F0E6', '#E8E8E8', '#87CEEB'],
   },
   {
-    id: '7',
-    name: 'iPad Pro 13" M4',
-    description: 'M4 chip. ביצועי AI מהירים פי 3.5. Wi-Fi 7. מודם C1X.',
-    price: 6999,
+    id: 'ipad-pro-m4',
+    name: 'iPad Pro M4',
+    description: 'ה-iPad החזק ביותר. שבב M4 עוצמתי, מסך Ultra Retina XDR, ויכולות פרו ללא פשרות.',
+    price: 5299,
+    eilatPrice: 4479,
     category: 'ipad',
     image: '/images/ipad-air-m4-13.png',
-    badge: 'M4 חדש',
-    colors: ['#86868b', '#1f1f1f'],
+    isNew: true,
+    path: '/product/ipad-pro-m4',
   },
   {
-    id: '8',
-    name: 'iPad Air 13" M3',
-    description: 'M3 chip. Ray Tracing. Magic Keyboard חדש. מסך Liquid Retina.',
-    price: 4499,
+    id: 'ipad-air-m4',
+    name: 'iPad Air M4',
+    description: 'עוצמה בקלילות. שבב M4 חדש, מסך Liquid Retina מדהים, ותאימות ל-Apple Pencil Pro.',
+    price: 3199,
+    eilatPrice: 2699,
     category: 'ipad',
     image: '/images/ipad-air-m3-13.png',
-    colors: ['#86868b', '#e3d7c5', '#c9c9ca', '#b8dce0', '#d5c4e5'],
+    isNew: true,
+    path: '/product/ipad-air-m4',
   },
   {
-    id: '9',
+    id: 'watch-ultra-2',
     name: 'Apple Watch Ultra 2',
-    description: 'S9 SiP. 3000 nits. GPS מדויק. 72 שעות סוללה.',
-    price: 3999,
+    description: 'השעון לכל הרפתקה. מסך הכי בהיר, GPS דו-תדרי, ועמידות קיצונית.',
+    price: 3699,
+    eilatPrice: 3129,
     category: 'watch',
     image: '/images/watch-ultra-2.png',
-    badge: 'Ultra',
+    isNew: true,
+    path: '/product/watch-ultra-2',
+    colors: ['#C4BCB1', '#1C1C1C'],
   },
   {
-    id: '10',
+    id: 'watch-series-10',
     name: 'Apple Watch Series 10',
-    description: 'מסך הכי גדול. הכי דק אי פעם. S10 SiP.',
-    price: 2099,
+    description: 'השעון המתקדם ביותר. מסך גדול יותר, דק יותר, עם כל יכולות הבריאות.',
+    price: 1999,
+    eilatPrice: 1689,
     category: 'watch',
     image: '/images/watch-series-10.png',
-    colors: ['#f5e6cf', '#3b3b3b', '#d4a489'],
+    isNew: true,
+    path: '/product/watch-series-10',
+    colors: ['#1C1C1C', '#E8C4B8', '#E8E8E8'],
   },
   {
-    id: '11',
+    id: 'airpods-pro-2',
     name: 'AirPods Pro 2',
-    description: 'USB-C. ביטול רעשים אקטיבי 2x. שמע מרחבי מותאם.',
-    price: 1049,
+    description: 'ביטול רעשים מוביל בתעשייה. שמע מרחבי, ושקיפות משופרת.',
+    price: 1149,
+    eilatPrice: 969,
     category: 'airpods',
     image: '/images/airpods-pro-2.png',
-    badge: 'הכי נמכר',
+    path: '/product/airpods-pro-2',
   },
   {
-    id: '12',
+    id: 'airpods-4',
     name: 'AirPods 4',
-    description: 'עיצוב חדש. H2 chip. שמע מרחבי מותאם אישית.',
-    price: 799,
+    description: 'עיצוב חדש, נוחות מושלמת. שמע איכותי עם שבב H2.',
+    price: 699,
+    eilatPrice: 589,
     category: 'airpods',
     image: '/images/airpods-4.png',
+    isNew: true,
+    path: '/product/airpods-4',
   },
 ];
 
@@ -307,11 +333,7 @@ const Home: React.FC = () => {
     : featuredProducts.filter(p => p.category === activeCategory);
 
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('he-IL', {
-      style: 'currency',
-      currency: 'ILS',
-      minimumFractionDigits: 0,
-    }).format(price);
+    return new Intl.NumberFormat('he-IL').format(price);
   };
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
@@ -518,44 +540,59 @@ const Home: React.FC = () => {
           {/* Products Grid */}
           <div className="products-grid">
             {filteredProducts.map((product) => (
-              <div key={product.id} className="product-card">
-                {product.badge && (
-                  <span className="product-card__badge">{product.badge}</span>
+              <Link
+                key={product.id}
+                to={product.path}
+                className="product-card"
+              >
+                {product.isNew && (
+                  <span className="product-card__badge">חדש</span>
                 )}
-                <div className="product-card__image">
+                <div className="product-card__image-wrapper">
                   <img
                     src={product.image}
                     alt={product.name}
-                    loading="lazy"
+                    className="product-card__image"
                   />
                 </div>
-                <div className="product-card__info">
-                  <h3 className="product-card__title">{product.name}</h3>
+                <div className="product-card__content">
+                  <h3 className="product-card__name">{product.name}</h3>
                   <p className="product-card__description">{product.description}</p>
-                  {product.colors && (
-                    <div className="product-card__colors">
-                      {product.colors.map((color, index) => (
-                        <span
-                          key={index}
-                          className="product-card__color"
-                          style={{ backgroundColor: color }}
-                        />
-                      ))}
-                    </div>
-                  )}
-                  <div className="product-card__footer">
+                  <div className="product-card__info-row">
                     <div className="product-card__pricing">
-                      <span className="product-card__price">{formatPrice(product.price)}</span>
-                      {product.originalPrice && (
-                        <span className="product-card__original-price">
-                          {formatPrice(product.originalPrice)}
-                        </span>
+                      <div className="product-card__price">
+                        <span className="product-card__price-label">החל מ-</span>
+                        <span className="product-card__price-value">{formatPrice(product.price)} ש"ח</span>
+                      </div>
+                      {product.eilatPrice && (
+                        <div className="product-card__eilat">
+                          <span className="product-card__eilat-label">מחיר אילת:</span>
+                          <span className="product-card__eilat-value">{formatPrice(product.eilatPrice)} ש"ח</span>
+                        </div>
                       )}
                     </div>
-                    <button className="product-card__button">הוסף לסל</button>
+                    {product.colors && product.colors.length > 0 && (
+                      <div className="product-card__colors">
+                        {product.colors.map((color, idx) => (
+                          <span
+                            key={idx}
+                            className="product-card__color"
+                            style={{ backgroundColor: color }}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <div className="product-card__cta">
+                    <span className="product-card__btn">
+                      לרכישה
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                      </svg>
+                    </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
